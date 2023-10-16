@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Read the Excel file
-df = pd.read_excel('/Users/JoaoAmaral/Documents/Code/procGroup/procGroup.xlsx', sheet_name='Sheet1')
+df = pd.read_excel('procGroup.xlsx', sheet_name='Sheet1')
 
 # Convert NaN values to an empty string in relevant columns
 df['bbp_name'] = df['bbp_name'].fillna('').astype(str)
@@ -28,4 +28,4 @@ shared_case_ids = case_id_groups[case_id_groups['Case ID'].apply(len) > 1]
 
 print(shared_case_ids)
 
-shared_case_ids.to_excel('testFull.xlsx', index=False)
+shared_case_ids.to_excel('test.xlsx', index=False)
