@@ -19,8 +19,8 @@ def get_equivalent_string(cell):
     return ', '.join(replaced_codes)
 
 # Read the Excel file
-df = pd.read_excel('/Users/JoaoAmaral/Documents/Code/procGroup/procGroup.xlsx', sheet_name="Sheet1")
-equivalents_df = pd.read_excel('/Users/JoaoAmaral/Documents/Code/procGroup/procGroup.xlsx', sheet_name="Sheet2")
+df = pd.read_excel('procGroup.xlsx', sheet_name="Sheet1")
+equivalents_df = pd.read_excel('procGroup.xlsx', sheet_name="Sheet2")
 
 # Create a mapping from the equivalent codes to the original codes
 equivalents_map = dict(zip(equivalents_df['similar_inter_code'], equivalents_df['inter_code']))
