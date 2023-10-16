@@ -21,25 +21,7 @@ def replace_with_or(cell):
 
 
 # Read the Excel file
-df = pd.read_excel('procGroup.xlsx', sheet_name="Sheet1")
-equivalents_df = pd.read_excel('procGroup.xlsx', sheet_name="Sheet2")
-
-equivalents_df['similar_inter_code'] = equivalents_df['similar_inter_code'].fillna('').astype(str)
-equivalents_df['inter_code'] = equivalents_df['inter_code'].fillna('').astype(str)
-
-# Create a mapping from the equivalent codes to the original codes
-equivalents_map = dict(zip(equivalents_df['similar_inter_code'], equivalents_df['inter_code']))
-
-# Update the way we create equivalents_map to handle multiple equivalent codes
-equivalents_map = {}
-for _, row in equivalents_df.iterrows():
-    if row['similar_inter_code']:  # this ensures we're not processing empty values
-        equivalents = ' OR '.join(row['similar_inter_code'].split(';'))
-        equivalents_map[row['inter_code']] = equivalents
-
-# Apply the function to the inter_procedure_code column
-df['inter_procedure_code'] = df['inter_procedure_code'].astype(str).apply(replace_with_or)
-
+df = pd.read_excel('procGroup.xlsx', sheet_name='Sheet1')
 
 # Convert NaN values to an empty string in relevant columns
 df['bbp_name'] = df['bbp_name'].fillna('').astype(str)
@@ -66,6 +48,4 @@ shared_case_ids = case_id_groups[case_id_groups['Case ID'].apply(len) > 1]
 
 print(shared_case_ids)
 
-shared_case_ids.to_excel('testFullV5.xlsx', index=False)
-
-
+shared_case_ids.to_excel('test.xlsx', index=False)
