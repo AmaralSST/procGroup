@@ -34,7 +34,7 @@ df['Procedure Name'] = df['Procedure Name'].fillna('').astype(str)
 df['similar_codes'] = df['inter_procedure_code'].apply(get_equivalent_string)
 
 # Filter out rows where 'similar_codes' contains only '-' characters
-df = df[df['similar_codes'].apply(lambda x: x != '-' and not x.replace(' ', '').replace('-', '').isalpha())]
+# df = df[df['similar_codes'].apply(lambda x: x != '-' and not x.replace(' ', '').replace('-', '').isalpha())]
 
 # Group by 'Case ID' and aggregate the 'inter_procedure_code', 'similar_codes', 'bbp_name', and 'Procedure Name' columns into sorted tuples
 grouped_code = df.groupby('Case ID')['inter_procedure_code'].apply(lambda x: tuple(sorted(x))).reset_index()
